@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11c8731d-07a7-4520-9ffa-c2eacb264ad4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Calculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Calculations.py" afterDir="false" />
-    </list>
+    <list default="true" id="11c8731d-07a7-4520-9ffa-c2eacb264ad4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +74,16 @@
       <workItem from="1575880512543" duration="179000" />
       <workItem from="1575894706226" duration="79000" />
       <workItem from="1577472643937" duration="263000" />
+      <workItem from="1579100274507" duration="311000" />
     </task>
+    <task id="LOCAL-00001" summary="Almost finished">
+      <created>1579100561400</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1579100561400</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +101,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Almost finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost finished" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FEM$main.coverage" NAME="main Coverage Results" MODIFIED="1579100420921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
