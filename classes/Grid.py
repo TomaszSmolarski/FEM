@@ -1,19 +1,40 @@
 from classes.UniversalElement import UniversalElement as ue
 from classes.Element import Element
 from classes.Node import Node
+from classes.GlobalData import GlobalData
 
 
 class Grid:
 
-    def __init__(self, gd):
-        self.ld=gd
-        self.dx = gd.W / (gd.nW - 1)
-        self.dy = gd.H / (gd.nH - 1)
-        self.nodes = [Node(id=nr + 1) for nr in range(gd.nN)]
-        self.set_nodes(gd)
-        self.elements = [self.set_element(gd, nr) for nr in range(gd.nE)]
+    def __init__(self, gd: GlobalData):
+        self.__ld = gd
+        self.__dx = self.ld.W / (self.ld.nW - 1)
+        self.__dy = self.ld.H / (self.ld.nH - 1)
+        self.__nodes = [Node(id=nr + 1) for nr in range(self.ld.nN)]
+        self.__set_nodes(self.ld)
+        self.__elements = [self.__set_element(self.ld, nr) for nr in range(self.ld.nE)]
 
-    def set_nodes(self, gd):
+    @property
+    def nodes(self):
+        return self.__nodes
+
+    @property
+    def elements(self):
+        return self.__elements
+
+    @property
+    def dx(self):
+        return self.__dx
+
+    @property
+    def dy(self):
+        return self.__dy
+
+    @property
+    def ld(self):
+        return self.__ld
+
+    def __set_nodes(self, gd):
         xx = 0
         yy = 0
         nr = 0
@@ -21,8 +42,7 @@ class Grid:
         while gd.nN > nr:
             if xx == 0 or yy == 0 or xx == gd.W or yy == gd.H:
                 BC = True
-            # self.nodes.append(node(0, xx, yy,BC, nr + 1))
-            self.nodes[nr] = Node( nr + 1,0, xx, yy, BC)
+            self.nodes[nr] = Node(nr + 1, 0, xx, yy, BC)
             BC = False
             nr = nr + 1
             if nr != 0 and nr % gd.nH == 0:
@@ -31,51 +51,9 @@ class Grid:
             else:
                 yy = yy + self.dy
 
-    def set_element(self, gd, nr):
+    def __set_element(self, gd: GlobalData, nr: int):
         j = int(nr / (gd.nH - 1))
-        nodesArray = []
-        trueArrayNodes = []
-        wallAmount = 0
-        wallNumbers = []
-        nodesArray.append(self.nodes[nr + j])
-        nodesArray.append(self.nodes[nr + j + gd.nH])
-        nodesArray.append(self.nodes[nr + j + gd.nH + 1])
-        nodesArray.append(self.nodes[nr + j + 1])
-
-        for node in nodesArray:
-            if node.bc == True:
-                trueArrayNodes.append(node)
-                wallAmount = wallAmount + 1
-        if wallAmount > 0:
-            wallAmount = wallAmount - 1
-
-            if len(trueArrayNodes) == 2:
-                if abs(trueArrayNodes[0].id - trueArrayNodes[1].id) == 1:
-                    if trueArrayNodes[0].id < gd.nH:
-                        wallNumbers.append(4)
-                    else:
-                        wallNumbers.append(2)
-                elif trueArrayNodes[0].id & gd.nH == 0:
-                    wallNumbers.append(3)
-                else:
-                    wallNumbers.append(1)
-
-            elif len(trueArrayNodes) == 3:
-                if any(node.id & gd.nH == 0 for node in trueArrayNodes):
-                    if any(node.id == gd.nH for node in trueArrayNodes):
-                        wallNumbers.append(3)
-                        wallNumbers.append(4)
-                    else:
-                        wallNumbers.append(2)
-                        wallNumbers.append(3)
-                elif all(node.id > gd.nH for node in trueArrayNodes):
-                    wallNumbers.append(1)
-                    wallNumbers.append(2)
-                else:
-                    wallNumbers.append(1)
-                    wallNumbers.append(4)
-
-        elem = Element(nr+1,nodesArray, wallNumbers, wallAmount)
-
+        nodes_array = [self.nodes[nr + j], self.nodes[nr + j + gd.nH], self.nodes[nr + j + gd.nH + 1],
+                       self.nodes[nr + j + 1]]
+        elem = Element(nr + 1, nodes_array)
         return elem
-

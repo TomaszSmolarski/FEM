@@ -5,15 +5,17 @@ import numpy as np
 class UniversalElement:
     def __init__(self):
         self.NPc = 2  # powinny byćjeszcze wagi ale są 1 i 1 dla tego przypadku
-        self.PcM = [1 / sqrt(3),-(1 / sqrt(3))]
-        self.weights=[1,1]
-        self.Pc = [[self.PcM[1], self.PcM[1]], [self.PcM[0], self.PcM[1]], [self.PcM[0], self.PcM[0]], [self.PcM[1], self.PcM[0]]]
+        self.PcM = np.array([1 / sqrt(3),-(1 / sqrt(3))])
+        self.weights = [1,1]
+        self.Pc = np.array([[self.PcM[1], self.PcM[1]], [self.PcM[0], self.PcM[1]], [self.PcM[0], self.PcM[0]], [self.PcM[1], self.PcM[0]]])
+
+        self.Pc_walls =np.array([[[self.Pc[0][0], -1], [self.Pc[1][0], -1]],
+                   [[1, self.Pc[1][1]], [1, self.Pc[2][1]]],
+                   [[self.Pc[2][0], 1], [self.Pc[3][0], 1]],
+                   [[-1, self.Pc[3][1]], [-1, self.Pc[0][1]]]])
         self.M_N = self.MN()
         self.M_Ne = self.MdNde()
         self.M_Nn = self.MdNdn()
-        self.M_N_T = np.transpose(self.M_N)
-        self.M_Ne_T = np.transpose(self.M_Ne)
-        self.M_Nn_T = np.transpose(self.M_Nn)
 
     def d1N1(self,e):
         return (1 - e)/2
@@ -40,7 +42,7 @@ class UniversalElement:
         return -((1-e) / 4)
 
     def dN2e(self, e, n):
-        return ((1 - n) / 4)
+        return (1 - n) / 4
 
     def dN2n(self, e, n):
         return -((1 + e) / 4)

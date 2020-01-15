@@ -1,0 +1,14 @@
+{
+        "H": 0.1,
+        "W": 0.1,
+        "nH": 4,
+        "nW": 4,
+        "initial_temp": 100,
+        "simulation_time": 500,
+        "simulation_step_time": 50,
+        "ambient_temp": 1200,
+        "alpha": 300,
+        "specific_heat": 700,
+        "conductivity": 25,
+        "density": 7800
+}
