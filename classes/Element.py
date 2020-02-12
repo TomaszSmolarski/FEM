@@ -8,12 +8,12 @@ class Element:
         self.__edges_with_bc = self.__edges_with_bc()
 
     def __str__(self):
-        return f"Element: [id: {self.__id}; nodes: {self.__nodes}" \
-               f"; walls_with_bc: {self.__edges_with_bc}]"
+        return f"Element: [id: {self.__id}, nodes: {self.__nodes}" \
+               f", walls_with_bc: {self.__edges_with_bc}]"
 
     def __repr__(self):
-        return f"Element: [id: {self.__id}; nodes: {self.__nodes}" \
-               f"; wall_numbers: {self.__edges_with_bc}]"
+        return f"Element: [id: {self.__id}, nodes: {self.__nodes}" \
+               f", wall_numbers: {self.__edges_with_bc}]"
 
     @property
     def id(self):

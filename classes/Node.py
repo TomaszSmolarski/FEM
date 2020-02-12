@@ -8,10 +8,10 @@ class Node:
         self.__id = id
 
     def __str__(self):
-        return f"Node: [id: {self.__id}; x: {self.__x:.3f}; y: {self.__y:.3f}; temp: {self.__temp:.3f}; BC: {self.__bc}]"
+        return f"Node: [id: {self.__id}, x: {self.__x:.3f}, y: {self.__y:.3f}, temp: {self.__temp:.3f}, BC: {self.__bc}]"
 
     def __repr__(self):
-        return f"Node: [id: {self.__id}; x: {self.__x:.3f}; y: {self.__y:.3f}; temp: {self.__temp:.3f}; BC: {self.__bc}]"
+        return f"Node: [id: {self.__id}, x: {self.__x:.3f}, y: {self.__y:.3f}, temp: {self.__temp:.3f}, BC: {self.__bc}]"
 
     @property
     def x(self):
@@ -32,3 +32,7 @@ class Node:
     @property
     def id(self):
         return self.__id
+
+    @temp.setter
+    def temp(self, value):
+        self.__temp = value
