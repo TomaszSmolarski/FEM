@@ -35,21 +35,16 @@ class Grid:
         return self.__ld
 
     def __set_nodes(self, gd):
-        xx = 0
-        yy = 0
         nr = 0
-        BC = False
-        while gd.nN > nr:
-            if xx == 0 or yy == 0 or xx == gd.W or yy == gd.H:
-                BC = True
-            self.nodes[nr] = Node(nr + 1, 0, xx, yy, BC)
-            BC = False
-            nr = nr + 1
-            if nr != 0 and nr % gd.nH == 0:
-                xx = xx + self.dx
-                yy = 0
-            else:
-                yy = yy + self.dy
+        for x_iter in range(gd.nW):
+            for y_iter in range(gd.nH):
+                xx = self.dx*x_iter
+                yy = self.dy*y_iter
+                if xx == 0 or yy == 0 or xx == gd.W or yy == gd.H:
+                    self.nodes[nr] = Node(nr + 1, 0, xx, yy, True)
+                else:
+                    self.nodes[nr] = Node(nr + 1, 0, xx, yy, False)
+                nr = nr + 1
 
     def __set_element(self, gd: GlobalData, nr: int):
         j = int(nr / (gd.nH - 1))
