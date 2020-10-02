@@ -7,6 +7,7 @@ import sys
 
 
 def main(file=None):
+
     if file is None:
         with open("data_file.json", "r") as read_file:
             data = json.load(read_file)
@@ -37,6 +38,7 @@ def main(file=None):
 
 
 if __name__ == '__main__':
+
     if len(sys.argv) > 1:
         main(sys.argv[1])
     else:
